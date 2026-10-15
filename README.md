@@ -3,7 +3,7 @@
 Hand-coded portfolio site (HTML, CSS, JavaScript). No build step.
 
 ## Add your posters
-1. Put your poster images in the `images` folder, named `poster-01.jpg`, `poster-02.jpg` and so on (portrait, about 2:3, under 500 KB each).
+1. Put your poster images in the `images` folder, named `poster-01.png` (or .jpg, .webp), `poster-02.png` and so on (portrait, about 2:3).
 2. Edit the `POSTERS` list near the bottom of `index.html` to change titles and notes.
 
 ## Publish on GitHub Pages
