@@ -68,12 +68,16 @@ a { color: inherit; }
 .theme:hover { border-color: var(--ink); }
 /* hero */
 .hero { padding-block: clamp(48px, 9vw, 112px) clamp(40px, 7vw, 88px); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: end; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
 h1 {
-  font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 7.2vw, 5.6rem);
-  line-height: 0.98; letter-spacing: -0.035em; margin: 0; text-wrap: balance;
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 8.6vw, 6.6rem);
+  line-height: 0.95; letter-spacing: -0.045em; margin: 0;
 }
-.lede { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--muted); max-width: 34em; margin: 28px 0 0; }
+.role { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.25rem, 2.6vw, 1.9rem); letter-spacing: -0.02em; line-height: 1.2; color: var(--accent); margin: 14px 0 0; text-wrap: balance; }
+.lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--muted); max-width: 32em; margin: 24px 0 0; }
+.portrait { position: relative; aspect-ratio: 4 / 5; width: 100%; max-width: 440px; justify-self: end; overflow: hidden; border-radius: 4px; background: var(--p1); border: 1px solid var(--line); }
+.portrait .mono { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: clamp(4rem, 12vw, 8rem); letter-spacing: -0.05em; opacity: 0.6; }
+.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; font: inherit; font-weight: 600; font-size: 0.97rem;
@@ -81,7 +85,7 @@ h1 {
 }
 .btn.solid { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .btn:hover { transform: translateY(-1px); }
-.now { margin: 0; border-top: 1px solid var(--ink); padding-top: 18px; display: grid; gap: 16px; }
+.now { margin: clamp(36px, 6vw, 64px) 0 0; border-top: 1px solid var(--ink); padding-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 32px; }
 .now dt { font-weight: 600; font-size: 0.9rem; color: var(--muted); }
 .now dd { margin: 2px 0 0; font-size: 1.02rem; }
 /* sections */
@@ -133,7 +137,8 @@ footer { padding-block: 28px 40px; border-top: 1px solid var(--line); color: var
 .lb p { color: #E6E8F0; margin: 0; }
 .lb button { position: absolute; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); font: inherit; color: #fff; background: transparent; border: 1px solid #fff6; border-radius: 999px; padding: 6px 16px; cursor: pointer; }
 @media (max-width: 900px) {
-  .hero-grid, .cols, .pair { grid-template-columns: minmax(0, 1fr); }
+  .hero-grid, .cols, .pair, .now { grid-template-columns: minmax(0, 1fr); }
+  .portrait { justify-self: start; max-width: 320px; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 520px) {
@@ -165,19 +170,24 @@ footer { padding-block: 28px 40px; border-top: 1px solid var(--line); color: var
   <div class="wrap hero">
     <div class="hero-grid">
       <div>
-        <h1>I design posters and I am learning to build for the web.</h1>
-        <p class="lede">Siddharthar A, B.Tech AI &amp; ML graduate from Coimbatore. I make posters, edit short videos and photos, and write front-end code. This site is my first hand-coded project.</p>
+        <h1>Siddharthar</h1>
+        <p class="role">Poster designer, video and photo editor</p>
+        <p class="lede">B.Tech AI &amp; ML graduate from Coimbatore. I design posters, edit short videos and photos, and write front-end code.</p>
         <div class="actions">
           <a class="btn solid" href="#work">See my posters</a>
           <a class="btn" href="#contact">Get in touch</a>
         </div>
       </div>
-      <dl class="now">
-        <div><dt>Open to</dt><dd>Junior front-end and UI roles, UI/UX design, freelance poster and reel work</dd></div>
-        <div><dt>Learning</dt><dd>HTML, CSS, JavaScript and Python (Harvard CS50P)</dd></div>
-        <div><dt>Based in</dt><dd>Coimbatore, Tamil Nadu</dd></div>
-      </dl>
+      <div class="portrait" aria-label="Photo of Siddharthar A">
+        <span class="mono" aria-hidden="true">SA</span>
+        <img id="photo" alt="Siddharthar A" hidden>
+      </div>
     </div>
+    <dl class="now">
+      <div><dt>Open to</dt><dd>Junior front-end and UI roles, UI/UX design, freelance poster and reel work</dd></div>
+      <div><dt>Learning</dt><dd>HTML, CSS, JavaScript and Python (Harvard CS50P)</dd></div>
+      <div><dt>Based in</dt><dd>Coimbatore, Tamil Nadu</dd></div>
+    </dl>
   </div>
 
   <section id="work">
@@ -299,6 +309,11 @@ var POSTERS = [
   document.getElementById("lbclose").addEventListener("click", closeLb);
   lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) closeLb(); });
+
+  var photo = document.getElementById("photo"), pk = 0, pex = ["jpg", "png", "jpeg", "webp"];
+  photo.onload = function () { photo.hidden = false; };
+  photo.onerror = function () { pk += 1; if (pk < pex.length) { photo.src = "images/photo." + pex[pk]; } };
+  photo.src = "images/photo." + pex[0];
 
   var root = document.documentElement;
   try { var t = localStorage.getItem("theme"); if (t === "dark" || t === "light") root.setAttribute("data-theme", t); } catch (e) {}
