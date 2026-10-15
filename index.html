@@ -257,16 +257,17 @@ footer { padding-block: 28px 40px; border-top: 1px solid var(--line); color: var
 </div>
 
 <script>
-// Add your poster images to the images folder and list them here. Missing files show a numbered placeholder.
+// Add poster images to the images folder (png, jpg, jpeg or webp) named poster-01, poster-02 and so on.
+// Missing files show a numbered placeholder.
 var POSTERS = [
-  { file: "images/poster-01.jpg", title: "Poster 01", note: "Movie poster" },
-  { file: "images/poster-02.jpg", title: "Poster 02", note: "Movie poster" },
-  { file: "images/poster-03.jpg", title: "Poster 03", note: "Movie poster" },
-  { file: "images/poster-04.jpg", title: "Poster 04", note: "Movie poster" },
-  { file: "images/poster-05.jpg", title: "Poster 05", note: "Movie poster" },
-  { file: "images/poster-06.jpg", title: "Poster 06", note: "Movie poster" },
-  { file: "images/poster-07.jpg", title: "Poster 07", note: "Movie poster" },
-  { file: "images/poster-08.jpg", title: "Poster 08", note: "Movie poster" }
+  { file: "images/poster-01", title: "Poster 01", note: "Movie poster" },
+  { file: "images/poster-02", title: "Poster 02", note: "Movie poster" },
+  { file: "images/poster-03", title: "Poster 03", note: "Movie poster" },
+  { file: "images/poster-04", title: "Poster 04", note: "Movie poster" },
+  { file: "images/poster-05", title: "Poster 05", note: "Movie poster" },
+  { file: "images/poster-06", title: "Poster 06", note: "Movie poster" },
+  { file: "images/poster-07", title: "Poster 07", note: "Movie poster" },
+  { file: "images/poster-08", title: "Poster 08", note: "Movie poster" }
 ];
 (function () {
   var g = document.getElementById("gallery");
@@ -279,13 +280,14 @@ var POSTERS = [
     var n = document.createElement("span"); n.className = "num"; n.textContent = String(i + 1).padStart(2, "0");
     var w = document.createElement("span"); w.className = "pending"; w.textContent = "Image coming soon";
     var img = new Image(); img.alt = p.title + ", " + p.note; img.loading = "lazy";
+    var exts = ["png", "jpg", "jpeg", "webp"], k = 0;
     img.onload = function () { f.classList.add("live"); };
-    img.onerror = function () { img.remove(); };
-    img.src = p.file;
+    img.onerror = function () { k += 1; if (k < exts.length) { img.src = p.file + "." + exts[k]; } else { img.remove(); } };
+    img.src = p.file + "." + exts[0];
     b.append(n, w, img);
     b.addEventListener("click", function () {
       if (!f.classList.contains("live")) return;
-      lbimg.src = p.file; lbimg.alt = img.alt; lbcap.textContent = p.title + " · " + p.note; lb.hidden = false;
+      lbimg.src = img.src; lbimg.alt = img.alt; lbcap.textContent = p.title + " · " + p.note; lb.hidden = false;
       document.getElementById("lbclose").focus();
     });
     var c = document.createElement("figcaption"); c.className = "cap";
