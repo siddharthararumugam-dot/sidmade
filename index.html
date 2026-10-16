@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>sidmade.in Portfolio</title>
+<meta name="description" content="Graphic designer and video editor Siddharthar A: poster design, video and photo editing, Coimbatore.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Kanit:wght@300;400;500;700;900&display=swap">
+<style>
+/* Layout: dark stage. Hero = portrait behind a giant red wordmark that forms letter by letter, then a rocket flies through and lands as the logo.
+   Then poster marquee, scroll-lit about text, white services panel, stacking poster cards, contact. */
+:root {
+  --bg: #0C0C0C; --ink: #D7E2EA; --muted: #8A949C; --red: #C91C1E; --paper: #FFFFFF; --line: rgba(12,12,12,.15);
+  --grad: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  --font: "Kanit", "Segoe UI", system-ui, sans-serif;
+  --mark: "Archivo Black", "Arial Black", "Segoe UI Black", Impact, sans-serif;
+  --pad: clamp(16px, 4vw, 48px);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-weight: 300; overflow-x: clip; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 6px; }
+.gwrap { padding-left: max(var(--pad), env(safe-area-inset-left, 0px)); padding-right: max(var(--pad), env(safe-area-inset-right, 0px)); }
+.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+.h2 { font-weight: 900; text-transform: uppercase; line-height: 1; letter-spacing: -0.02em; text-align: center; font-size: clamp(3rem, 12vw, 160px); }
+/* fade-in on view */
+.fi { opacity: 0; transform: translate(var(--x, 0), var(--y, 30px)); transition: opacity .7s cubic-bezier(.25,.1,.25,1) var(--d, 0s), transform .7s cubic-bezier(.25,.1,.25,1) var(--d, 0s); }
+.fi.in { opacity: 1; transform: none; }
+/* buttons */
+.btn-red { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font); font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: #fff; border: 0; cursor: pointer;
+  font-size: clamp(.75rem, 1.4vw, 1rem); padding: clamp(12px,1.6vw,16px) clamp(28px,4vw,48px); border-radius: 999px;
+  background: linear-gradient(123deg, #1C0204 7%, #C91C1E 38%, #8E1013 72%, #D95A1E 100%);
+  box-shadow: 0 4px 4px rgba(201,28,30,.25), 4px 4px 12px #A01518 inset; outline: 2px solid #fff; outline-offset: -3px; transition: transform .2s; }
+.btn-red:hover { transform: translateY(-2px); }
+.btn-ghost { display: inline-flex; align-items: center; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; border: 2px solid var(--ink); border-radius: 999px; color: var(--ink); background: transparent; cursor: pointer;
+  font-family: var(--font); font-size: clamp(.8rem, 1.3vw, 1rem); padding: 12px clamp(24px,3vw,40px); transition: background .2s; white-space: nowrap; }
+.btn-ghost:hover { background: rgba(215,226,234,.1); }
+
+/* ---- hero ---- */
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+.nav { position: relative; z-index: 6; display: flex; justify-content: space-between; gap: 12px; padding-top: clamp(20px, 3vw, 32px);
+  font-weight: 500; text-transform: uppercase; letter-spacing: .08em; font-size: clamp(.8rem, 1.5vw, 1.4rem); }
+.nav a { transition: opacity .2s; }
+.nav a:hover { opacity: .7; }
+.portrait { position: absolute; z-index: 1; left: 50%; bottom: 0; height: 86%; aspect-ratio: 900 / 1200; max-width: 92vw; margin-left: calc(var(--pw, 0px) / -2); will-change: transform; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; opacity: .92;
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%), linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to bottom, #000 62%, transparent 100%), linear-gradient(to right, transparent, #000 14%, #000 86%, transparent); mask-composite: intersect; }
+#smoke { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; pointer-events: none; }
+.wordmark { position: absolute; z-index: 3; left: max(var(--pad), env(safe-area-inset-left, 0px)); bottom: clamp(72px, 14vh, 150px);
+  display: flex; font-family: var(--mark); color: var(--red); line-height: 1; letter-spacing: -.02em; white-space: nowrap; user-select: none; font-weight: 400; cursor: pointer; }
+.wordmark span { display: inline-block; will-change: transform, opacity, filter;
+  -webkit-mask-image: url("images/distress.png"); mask-image: url("images/distress.png"); -webkit-mask-size: 4em 4em; mask-size: 4em 4em; }
+#rocket { position: absolute; z-index: 5; left: 0; top: 0; width: 147px; height: 140px; transform-origin: 73.5px 70px; opacity: 0; pointer-events: none; will-change: transform; }
+#rocket .bob { width: 100%; height: 100%; }
+#rocket.idle .bob { animation: bob 3.2s ease-in-out infinite; }
+#rocket img { width: 100%; height: 100%; }
+@keyframes bob { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(1deg); } }
+.hero-bottom { position: relative; z-index: 6; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-bottom: clamp(24px, 3.5vw, 40px); }
+.hero-bottom p { text-transform: uppercase; letter-spacing: .04em; line-height: 1.25; font-size: clamp(.72rem, 1.3vw, 1.3rem); max-width: clamp(150px, 22vw, 300px); }
+
+/* ---- marquee ---- */
+.marquee { padding-top: clamp(96px, 14vw, 160px); padding-bottom: 40px; overflow: hidden; display: grid; gap: 12px; }
+.row { display: flex; gap: 12px; width: max-content; will-change: transform; }
+.tile { width: clamp(180px, 22vw, 300px); aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: #181818; flex: none; cursor: zoom-in; }
+.tile img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---- about ---- */
+.about { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: clamp(40px, 6vw, 64px); padding-block: 80px; overflow: hidden; }
+.about .copy { display: grid; gap: clamp(40px, 6vw, 64px); justify-items: center; position: relative; z-index: 2; }
+.about p.reveal { max-width: 560px; font-weight: 500; line-height: 1.7; font-size: clamp(1rem, 2vw, 1.35rem); color: var(--ink); }
+.reveal .ch { opacity: .2; }
+.reveal .w { display: inline-block; white-space: nowrap; }
+.float { position: absolute; z-index: 1; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 40px rgba(0,0,0,.5); aspect-ratio: 4/5; }
+.float img { width: 100%; height: 100%; object-fit: cover; }
+.f1 { width: clamp(96px, 13vw, 190px); top: 5%; left: 3%; --x: -80px; --y: 0px; rotate: -8deg; }
+.f2 { width: clamp(84px, 11vw, 160px); bottom: 7%; left: 8%; --x: -80px; --y: 0px; rotate: 6deg; }
+.f3 { width: clamp(96px, 13vw, 190px); top: 5%; right: 3%; --x: 80px; --y: 0px; rotate: 7deg; }
+.f4 { width: clamp(90px, 12vw, 175px); bottom: 7%; right: 8%; --x: 80px; --y: 0px; rotate: -6deg; }
+
+/* ---- services ---- */
+.services { background: var(--paper); color: #0C0C0C; border-radius: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px) 0 0; padding-block: clamp(80px, 10vw, 128px); }
+.services .h2 { color: #0C0C0C; margin-bottom: clamp(64px, 9vw, 112px); }
+.list { max-width: 1024px; margin-inline: auto; }
+.item { display: flex; gap: clamp(16px, 4vw, 56px); align-items: flex-start; padding-block: clamp(32px, 4vw, 48px); border-top: 1px solid var(--line); }
+.item:last-child { border-bottom: 1px solid var(--line); }
+.num { font-weight: 900; font-size: clamp(3rem, 10vw, 140px); line-height: .9; color: #0C0C0C; min-width: 1.2em; }
+.item h3 { font-weight: 500; text-transform: uppercase; font-size: clamp(1rem, 2.2vw, 2.1rem); }
+.item p { font-weight: 300; line-height: 1.7; max-width: 42rem; font-size: clamp(.85rem, 1.6vw, 1.25rem); opacity: .6; margin-top: 8px; }
+
+/* ---- projects ---- */
+.projects { position: relative; z-index: 10; background: var(--bg); border-radius: clamp(40px, 5vw, 60px) clamp(40px, 5vw, 60px) 0 0; margin-top: calc(-1 * clamp(40px, 4.5vw, 56px)); padding-block: clamp(80px, 10vw, 128px) 40px; }
+.projects .h2 { margin-bottom: clamp(48px, 7vw, 96px); }
+.stackwrap { max-width: 1180px; margin-inline: auto; }
+.slot { height: max(85vh, 760px); }
+.slot:last-child { height: auto; }
+.card { position: sticky; top: calc(88px + var(--i) * 28px); border: 2px solid var(--ink); border-radius: clamp(36px, 5vw, 60px); background: var(--bg); padding: clamp(16px, 2.5vw, 32px); transform-origin: 50% 0; will-change: transform; }
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 4px clamp(8px, 1.5vw, 20px) clamp(16px, 2vw, 28px); }
+.card-top .lhs { display: flex; align-items: center; gap: clamp(14px, 3vw, 40px); min-width: 0; }
+.card .num { color: var(--ink); font-size: clamp(2.6rem, 8vw, 110px); }
+.card small { display: block; font-size: clamp(.7rem, 1.2vw, 1rem); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.card h3 { font-weight: 500; text-transform: uppercase; font-size: clamp(1rem, 2.4vw, 2.2rem); line-height: 1.1; }
+.shots { display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: clamp(8px, 1.5vw, 20px); }
+.shots .shot { aspect-ratio: 4 / 5; border-radius: clamp(16px, 3vw, 36px); overflow: hidden; background: #181818; cursor: zoom-in; border: 0; padding: 0; }
+.shots img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.shots .shot:hover img { transform: scale(1.03); }
+.note { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 56px; }
+
+/* ---- contact ---- */
+.contact { padding-block: clamp(72px, 10vw, 128px) 32px; text-align: center; }
+.contact .lead { max-width: 34rem; margin: 28px auto 0; font-weight: 400; line-height: 1.7; font-size: clamp(1rem, 1.8vw, 1.25rem); }
+.mail { margin: 40px auto 0; display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; justify-content: center; }
+.mail code { font-family: var(--font); font-weight: 500; font-size: clamp(1.1rem, 3.2vw, 2rem); overflow-wrap: anywhere; }
+.copy { font: inherit; font-size: .85rem; color: var(--ink); background: transparent; border: 1px solid rgba(215,226,234,.4); border-radius: 999px; padding: 6px 16px; cursor: pointer; }
+.copy:hover { background: rgba(215,226,234,.1); }
+.social { display: flex; gap: 12px 36px; justify-content: center; flex-wrap: wrap; margin-top: 36px; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; }
+.social a { border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+.cta { margin-top: 44px; }
+.foot { margin-top: clamp(64px, 9vw, 112px); color: var(--muted); font-size: .85rem; }
+.foot .big { font-family: var(--mark); color: var(--red); font-size: clamp(2.4rem, 12vw, 9rem); line-height: 1; letter-spacing: -.02em; margin-bottom: 16px; user-select: none; }
+
+/* ---- lightbox ---- */
+.lb { position: fixed; inset: 0; z-index: 100; background: rgba(8,8,8,.94); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; }
+.lb[hidden] { display: none; }
+.lb img { max-width: min(92vw, 760px); max-height: 84vh; border-radius: 6px; }
+.lb button { position: absolute; top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); font: inherit; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; padding: 6px 18px; cursor: pointer; }
+
+@media (max-width: 720px) {
+  .nav a:nth-child(2) { display: none; }
+  .item { gap: 14px; }
+  .hero-bottom .btn-red { padding-inline: 24px; }
+  .portrait { height: 70%; }
+  .about .float { opacity: .0; }
+  .about .float.in { opacity: .85; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fi { transition: none; opacity: 1; transform: none; }
+  #rocket.idle .bob { animation: none; }
+}
+</style>
+
+</head>
+<body>
+<main>
+<section class="hero" id="top">
+  <nav class="nav gwrap fi" style="--y:-20px" aria-label="Sections">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#contact">Contact</a>
+  </nav>
+  <div class="pwrap">
+    <div class="portrait" id="portrait"><img class="fi" style="--d:.6s" src="images/photo.jpg" alt="Siddharthar A" width="900" height="1200" fetchpriority="high"></div>
+  </div>
+  <canvas id="smoke" aria-hidden="true"></canvas>
+  <h1 class="wordmark" id="wordmark" aria-label="sidmade.in" title="Replay"><span aria-hidden="true">s</span><span aria-hidden="true">i</span><span aria-hidden="true">d</span><span aria-hidden="true">m</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span><span aria-hidden="true">e</span><span aria-hidden="true">.</span><span aria-hidden="true">i</span><span aria-hidden="true">n</span></h1>
+  <div id="rocket" aria-hidden="true"><div class="bob"><img src="images/rocket.png" alt=""></div></div>
+  <div class="hero-bottom gwrap">
+    <p class="fi" style="--d:.35s; --y:20px">Graphic designer and video editor driven by bold, unforgettable visuals</p>
+    <a class="btn-red fi" style="--d:.5s; --y:20px" href="#contact">Contact Me</a>
+  </div>
+</section>
+
+<section class="marquee" id="work" aria-label="Selected posters">
+  <div class="row" id="row1">
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/greatest-bw.jpg" alt="The Greatest Of All Time poster in black and white"></button>
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/eyes-chico.jpg" alt="The Eyes Chico, They Never Lie poster"></button>
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/since-1975.jpg" alt="Since 1975 red and black poster with gold stars"></button>
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/reintroducing.jpg" alt="ReIntroducing The Real Goat yellow poster"></button>
+  </div>
+  <div class="row" id="row2">
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/mcgill-wexler.jpg" alt="McGill and Wexler duotone poster"></button>
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/santhosh.jpg" alt="Tamil music collage poster in black and white"></button>
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/greatest-red.jpg" alt="The Greatest Of All Time poster in red"></button>
+    <button class="tile" data-zoom type="button"><img loading="lazy" src="images/posters/greatest-yellow.jpg" alt="The Greatest Of All Time poster in yellow"></button>
+  </div>
+</section>
+
+<section class="about gwrap" id="about">
+  <div class="float f1 fi" style="--d:.1s"><img loading="lazy" src="images/posters/since-1975.jpg" alt=""></div>
+  <div class="float f2 fi" style="--d:.25s"><img loading="lazy" src="images/posters/santhosh.jpg" alt=""></div>
+  <div class="float f3 fi" style="--d:.15s"><img loading="lazy" src="images/posters/reintroducing.jpg" alt=""></div>
+  <div class="float f4 fi" style="--d:.3s"><img loading="lazy" src="images/posters/mcgill-wexler.jpg" alt=""></div>
+  <div class="copy">
+    <h2 class="h2 grad fi" style="--y:40px">About me</h2>
+    <p class="reveal" id="aboutText">I am Siddharthar, a B.Tech AI and ML graduate from Coimbatore. I design posters, edit videos and photos, and I am learning front-end development to build the web as well as design for it. I like bold type, strong contrast and clear ideas. Let's make something people remember.</p>
+    <a class="btn-red fi" href="#contact">Contact Me</a>
+  </div>
+</section>
+
+<section class="services gwrap" id="services">
+  <h2 class="h2 fi">Services</h2>
+  <div class="list">
+    <div class="item fi"><div class="num">01</div><div><h3>Poster Design</h3><p>Bold, typographic posters for films, music, events and campaigns, built from scratch with careful type, colour and texture.</p></div></div>
+    <div class="item fi" style="--d:.1s"><div class="num">02</div><div><h3>Video Editing</h3><p>Reels, edits and short promos cut to the beat, with clean transitions, captions and colour for Instagram and YouTube.</p></div></div>
+    <div class="item fi" style="--d:.2s"><div class="num">03</div><div><h3>Photo Editing</h3><p>Colour, light and tone retouching in Lightroom, from single portraits to full sets with one consistent look.</p></div></div>
+    <div class="item fi" style="--d:.3s"><div class="num">04</div><div><h3>Social Media Design</h3><p>Matching posts, stories and highlights, so a page looks like one brand and not a random set of images.</p></div></div>
+  </div>
+</section>
+
+<section class="projects gwrap" id="projects">
+  <h2 class="h2 grad fi" style="--y:40px">Projects</h2>
+  <div class="stackwrap" id="stack">
+    <div class="slot"><article class="card" style="--i:0">
+      <div class="card-top"><div class="lhs"><div class="num">01</div><div><small>Poster series</small><h3>The Greatest</h3></div></div><a class="btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram</a></div>
+      <div class="shots" style="--n:3">
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/greatest-bw.jpg" alt="The Greatest Of All Time poster, black and white"></button>
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/greatest-red.jpg" alt="The Greatest Of All Time poster, red"></button>
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/greatest-yellow.jpg" alt="The Greatest Of All Time poster, yellow"></button>
+      </div></article></div>
+    <div class="slot"><article class="card" style="--i:1">
+      <div class="card-top"><div class="lhs"><div class="num">02</div><div><small>Tribute posters</small><h3>Cinema Icons</h3></div></div><a class="btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram</a></div>
+      <div class="shots" style="--n:3">
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/since-1975.jpg" alt="Since 1975 poster"></button>
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/reintroducing.jpg" alt="ReIntroducing The Real Goat poster"></button>
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/eyes-chico.jpg" alt="The Eyes Chico poster"></button>
+      </div></article></div>
+    <div class="slot"><article class="card" style="--i:2">
+      <div class="card-top"><div class="lhs"><div class="num">03</div><div><small>Experiments</small><h3>Colour and Collage</h3></div></div><a class="btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram</a></div>
+      <div class="shots" style="--n:2">
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/mcgill-wexler.jpg" alt="McGill and Wexler duotone poster"></button>
+        <button class="shot" data-zoom type="button"><img loading="lazy" src="images/posters/santhosh.jpg" alt="Tamil music collage poster"></button>
+      </div></article></div>
+  </div>
+  <p class="note">All posters are personal, fan-made concept designs.</p>
+</section>
+
+<section class="contact gwrap" id="contact">
+  <h2 class="h2 grad fi" style="--y:40px">Contact</h2>
+  <p class="lead fi">Need a poster, a reel or a photo edit? Or hiring for a junior front-end or UI role? Send me a message.</p>
+  <p class="mail fi"><code id="mailText">siddharthararumugam@gmail.com</code><button class="copy" id="copyMail" type="button">Copy email</button></p>
+  <div class="social fi">
+    <a href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/siddharthar-arumugam-02b083241" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/siddharthararumugam-dot" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="foot"><div class="big" aria-hidden="true">sidmade.in</div>Designed and coded by Siddharthar A, Coimbatore. 2026.</div>
+</section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Poster viewer" hidden><button type="button" id="lbClose">Close</button><img id="lbImg" alt=""></div>
+
+<script>
+(function () {
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function clamp(v, a, b) { return Math.min(Math.max(v, a === undefined ? 0 : a), b === undefined ? 1 : b); }
+  function hash(v) { var x = Math.sin(v * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* fade-in on view */
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '50px' });
+  $$('.fi').forEach(function (el) { io.observe(el); });
+
+  /* lightbox */
+  var lb = $('#lb'), lbImg = $('#lbImg');
+  function closeLb() { lb.hidden = true; lbImg.removeAttribute('src'); }
+  $$('[data-zoom]').forEach(function (b) { b.addEventListener('click', function () { var im = $('img', b); lbImg.src = im.currentSrc || im.src; lbImg.alt = im.alt; lb.hidden = false; $('#lbClose').focus(); }); });
+  $('#lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+
+  /* copy email */
+  var cb = $('#copyMail'), mt = $('#mailText');
+  cb.addEventListener('click', function () {
+    function ok() { cb.textContent = 'Copied'; setTimeout(function () { cb.textContent = 'Copy email'; }, 1800); }
+    function sel() { var r = document.createRange(); r.selectNodeContents(mt); var s = getSelection(); s.removeAllRanges(); s.addRange(r); cb.textContent = 'Press copy now'; setTimeout(function () { cb.textContent = 'Copy email'; }, 2500); }
+    try { navigator.clipboard.writeText(mt.textContent).then(ok, sel); } catch (e) { sel(); }
+  });
+
+  /* marquee rows driven by scroll */
+  var marquee = $('.marquee'), rows = [$('#row1'), $('#row2')], setW = 0;
+  rows.forEach(function (r) { var kids = $$('.tile', r); [1, 2].forEach(function () { kids.forEach(function (k) { var c = k.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; r.appendChild(c); }); }); });
+  $$('.marquee .tile').forEach(function (b) { if (!b.hasAttribute('aria-hidden')) return; b.addEventListener('click', function () { var im = $('img', b); lbImg.src = im.currentSrc || im.src; lbImg.alt = ''; lb.hidden = false; }); });
+  function measureRows() { setW = rows[0].scrollWidth / 3 + 6; rows.forEach(function (r) { r.style.marginLeft = (-setW) + 'px'; }); }
+  function updateRows() {
+    var top = marquee.getBoundingClientRect().top + window.scrollY;
+    var off = (window.scrollY - top + window.innerHeight) * 0.3;
+    rows[0].style.transform = 'translateX(' + (off - 200).toFixed(1) + 'px)';
+    rows[1].style.transform = 'translateX(' + (-(off - 200)).toFixed(1) + 'px)';
+  }
+
+  /* about text lights up character by character */
+  var at = $('#aboutText'), chars = [];
+  (function () {
+    var txt = at.textContent; at.textContent = ''; at.setAttribute('aria-label', txt);
+    txt.split(' ').forEach(function (word, wi, arr) {
+      var w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+      word.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; w.appendChild(s); chars.push(s); });
+      at.appendChild(w); if (wi < arr.length - 1) at.appendChild(document.createTextNode(' '));
+    });
+  })();
+  function updateAbout() {
+    var r = at.getBoundingClientRect(), vh = window.innerHeight;
+    var p = clamp((0.8 * vh - r.top) / (0.6 * vh + r.height)), N = chars.length, W = 8;
+    for (var i = 0; i < N; i++) { var v = clamp((p * (N + W) - i) / W); chars[i].style.opacity = reduce ? 1 : (0.2 + 0.8 * v).toFixed(3); }
+  }
+
+  /* stacking project cards */
+  var slots = $$('#stack .slot'), cards = slots.map(function (s) { return $('.card', s); });
+  function updateCards() {
+    var n = slots.length;
+    for (var i = 0; i < n - 1; i++) {
+      var nextTop = slots[i + 1].getBoundingClientRect().top, stick = 88 + (i + 1) * 28, h = slots[i].offsetHeight;
+      var p = clamp(1 - (nextTop - stick) / h), target = 1 - (n - 1 - i) * 0.03;
+      cards[i].style.transform = 'scale(' + (1 - p * (1 - target)).toFixed(4) + ')';
+    }
+  }
+
+  /* magnetic portrait */
+  var por = $('#portrait');
+  if (matchMedia('(pointer: fine)').matches && !reduce) {
+    var inside = false;
+    window.addEventListener('mousemove', function (e) {
+      var r = por.getBoundingClientRect(), cx = r.left + r.width / 2 - 0 , cy = r.top + r.height / 2, pad = 150;
+      var cur = por._tx ? 0 : 0;
+      var rx = r.left - (por._tx || 0), ry = r.top - (por._ty || 0);
+      var near = e.clientX > rx - pad && e.clientX < rx + r.width + pad && e.clientY > ry - pad && e.clientY < ry + r.height + pad;
+      if (near) { var ccx = rx + r.width / 2, ccy = ry + r.height / 2; por._tx = (e.clientX - ccx) / 3; por._ty = (e.clientY - ccy) / 3; por.style.transition = 'transform .3s ease-out'; inside = true; }
+      else if (inside) { por._tx = 0; por._ty = 0; por.style.transition = 'transform .6s ease-in-out'; inside = false; }
+      por.style.transform = 'translate3d(' + (por._tx || 0) + 'px,' + (por._ty || 0) + 'px,0)';
+    });
+  }
+
+  /* hero: letters form, rocket flies through and lands */
+  var hero = $('.hero'), wm = $('#wordmark'), letters = $$('span', wm), rocket = $('#rocket'), cv = $('#smoke'), ctx = cv.getContext('2d');
+  var DUR = 5.6, T_L0 = 0.25, T_START = 1.7, T_END = 4.2, T_SM0 = 3.9, T_SM1 = 5.1;
+  var G = null, poly = [], cum = [], LEN = 1, lastT = 0, playing = false;
+  letters.forEach(function (l, i) { l.style.webkitMaskPosition = l.style.maskPosition = (hash(i * 4.3) * 100).toFixed(0) + '% ' + (hash(i * 8.9) * 100).toFixed(0) + '%'; });
+
+  function cr(p0, p1, p2, p3, t) {
+    var t2 = t * t, t3 = t2 * t;
+    return [0.5 * ((2 * p1[0]) + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3),
+            0.5 * ((2 * p1[1]) + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)];
+  }
+  function layout() {
+    var hr = hero.getBoundingClientRect(), vw = hr.width, vh = hr.height;
+    letters.forEach(function (l) { l.style.transform = 'none'; l.style.filter = 'none'; l.style.opacity = 1; });
+    wm.style.fontSize = '100px';
+    var w100 = wm.getBoundingClientRect().width, pad = parseFloat(getComputedStyle(wm).left) || 16;
+    var c = document.createElement('canvas').getContext('2d'); c.font = '100px ' + getComputedStyle(wm).fontFamily;
+    var mx = c.measureText('x'), xh100 = mx.actualBoundingBoxAscent || 52, asc100 = mx.fontBoundingBoxAscent || 90, desc100 = mx.fontBoundingBoxDescent || 25;
+    var fs = Math.min((vw - 2 * pad) / (w100 / 100 + 1.45 * xh100 / 100), 0.27 * vh, 260);
+    wm.style.fontSize = fs + 'px';
+    var wr = wm.getBoundingClientRect(), xh = xh100 * fs / 100, asc = asc100 * fs / 100, desc = desc100 * fs / 100;
+    var base = (wr.top - hr.top) + (fs - (asc + desc)) / 2 + asc;
+    var L = letters.map(function (l) { var r = l.getBoundingClientRect(); return { cx: r.left - hr.left + r.width / 2, right: r.right - hr.left }; });
+    var nL = L[L.length - 1], F = { x: nL.right + 0.45 * xh, y: base - 1.43 * xh }, k = (1.9 * xh) / 132;
+    rocket.style.width = (147 * k) + 'px'; rocket.style.height = (140 * k) + 'px'; rocket.style.transformOrigin = (73.5 * k) + 'px ' + (70 * k) + 'px';
+    G = { vw: vw, vh: vh, fs: fs, xh: xh, base: base, L: L, F: F, k: k, yc: base - xh / 2 };
+    var dpr = Math.min(window.devicePixelRatio || 1, 2); cv.width = Math.round(vw * dpr); cv.height = Math.round(vh * dpr); G.dpr = dpr;
+    var P = [[-0.1 * vw, base + 3 * xh]];
+    for (var i = 0; i <= 8; i++) P.push([L[i].cx, G.yc + (i % 2 ? -1 : 1) * 0.34 * xh]);
+    P.push([nL.cx - 0.1 * xh, base - 0.5 * xh]); P.push([F.x, F.y]);
+    poly = []; var n = P.length, j, q;
+    for (j = 0; j < n - 1; j++) { var a = P[Math.max(0, j - 1)], b = P[j], cc = P[j + 1], d = P[Math.min(n - 1, j + 2)]; for (q = 0; q < 50; q++) poly.push(cr(a, b, cc, d, q / 50)); }
+    poly.push(P[n - 1]); cum = [0];
+    for (j = 1; j < poly.length; j++) cum.push(cum[j - 1] + Math.hypot(poly[j][0] - poly[j - 1][0], poly[j][1] - poly[j - 1][1]));
+    LEN = cum[cum.length - 1];
+    G.off = letters.map(function (_, i) { return { dx: (hash(i * 3.1) - 0.5) * vw * 0.5, dy: (hash(i * 5.7) > 0.5 ? 1 : -1) * (0.25 + 0.3 * hash(i * 9.1)) * vh, rot: (hash(i * 1.7) - 0.5) * 100 }; });
+  }
+  function at2(u) {
+    var s = clamp(u) * LEN, lo = 0, hi = cum.length - 1;
+    while (hi - lo > 1) { var m = (lo + hi) >> 1; if (cum[m] <= s) lo = m; else hi = m; }
+    var f = (s - cum[lo]) / Math.max(cum[hi] - cum[lo], 1e-6);
+    return { x: poly[lo][0] + (poly[hi][0] - poly[lo][0]) * f, y: poly[lo][1] + (poly[hi][1] - poly[lo][1]) * f, ang: Math.atan2(poly[hi][1] - poly[lo][1], poly[hi][0] - poly[lo][0]) };
+  }
+  function eSine(x) { return -(Math.cos(Math.PI * x) - 1) / 2; }
+  function eOut(x) { return 1 - Math.pow(1 - x, 3); }
+  function eBack(x) { var c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); }
+  function sm(x) { return x * x * (3 - 2 * x); }
+  var NAT = -41.9 * Math.PI / 180;
+  function rstate(t) {
+    var u = eSine(clamp((t - T_START) / (T_END - T_START))), p = at2(u), s = 0.5 + 0.5 * eBack(clamp((u - 0.8) / 0.2)), d = p.ang - NAT;
+    while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
+    d = d * (1 - sm(clamp((u - 0.82) / 0.18)));
+    return { x: p.x, y: p.y, s: s, rot: d, u: u };
+  }
+  function puff(x, y, r, a) {
+    var g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, 'rgba(226,231,246,' + a + ')'); g.addColorStop(0.65, 'rgba(190,198,226,' + (a * 0.65) + ')'); g.addColorStop(1, 'rgba(160,170,210,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+  }
+  function render(t) {
+    if (!G) return; lastT = t;
+    var i, xh = G.xh;
+    letters.forEach(function (l, i) {
+      var q = clamp((t - (T_L0 + i * 0.09)) / 0.95), e = eOut(q), o = G.off[i];
+      l.style.opacity = clamp(q * 2.2).toFixed(3);
+      l.style.transform = q >= 1 ? 'none' : 'translate(' + (o.dx * (1 - e)).toFixed(1) + 'px,' + (o.dy * (1 - e)).toFixed(1) + 'px) rotate(' + (o.rot * (1 - e)).toFixed(1) + 'deg) scale(' + (1 + 0.5 * (1 - e)).toFixed(3) + ')';
+      l.style.filter = q >= 1 ? 'none' : 'blur(' + (8 * (1 - e)).toFixed(1) + 'px)';
+    });
+    var st = rstate(t), k = G.k;
+    if (t >= T_START - 0.05) {
+      rocket.style.opacity = 1;
+      rocket.style.transform = 'translate(' + (st.x - 73.5 * k).toFixed(1) + 'px,' + (st.y - 70 * k).toFixed(1) + 'px) rotate(' + st.rot.toFixed(4) + 'rad) scale(' + st.s.toFixed(4) + ')';
+    } else rocket.style.opacity = 0;
+    rocket.classList.toggle('idle', t >= DUR);
+    var dpr = G.dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, G.vw, G.vh);
+    var life = 1.3, from = Math.max(T_START, t - life), qq;
+    for (qq = from; qq <= t && qq <= T_END + 0.4; qq += 0.03) {
+      var s2 = rstate(qq), cs = Math.cos(s2.rot), sn = Math.sin(s2.rot), tx = -56 * k * s2.s, ty = 53 * k * s2.s, age = t - qq;
+      var px = s2.x + tx * cs - ty * sn + (hash(qq * 7) - 0.5) * 0.18 * xh * s2.s, py = s2.y + tx * sn + ty * cs + (hash(qq * 13) - 0.5) * 0.18 * xh * s2.s - age * 0.1 * xh;
+      puff(px, py, (0.22 + age * 0.7) * xh * s2.s + 2, 0.5 * Math.pow(1 - age / life, 1.6));
+    }
+    var fa = eOut(clamp((t - T_SM0) / (T_SM1 - T_SM0)));
+    if (fa > 0) {
+      var L = G.L, x0 = L[3].cx, x1 = L[7].cx, m;
+      for (m = 0; m < 14; m++) { var f = m / 13; puff(x0 + (x1 - x0) * f + (hash(m * 2.3) - 0.5) * 0.2 * xh, G.base + 0.3 * xh + (hash(m * 5.1) - 0.5) * 0.25 * xh, (0.34 + 0.22 * hash(m * 7.7)) * xh, 0.42 * fa); }
+      var cx = L[7].cx, cy = G.base - 0.9 * xh;
+      for (m = 0; m < 16; m++) { var ang = m / 16 * 6.2832 * 1.05; puff(cx + Math.cos(ang) * 0.62 * xh, cy + Math.sin(ang) * 0.62 * xh, 0.17 * xh, 0.3 * fa); }
+    }
+  }
+  var raf = 0, t0 = null;
+  function frame(now) { if (t0 === null) t0 = now; var t = (now - t0) / 1000; if (t >= DUR) { render(DUR); raf = 0; playing = false; return; } render(t); raf = requestAnimationFrame(frame); }
+  function play() { if (!G) return; if (raf) cancelAnimationFrame(raf); if (reduce) { render(DUR); return; } t0 = null; playing = true; render(0); raf = requestAnimationFrame(frame); }
+  wm.addEventListener('click', play);
+  window.setT = function (t) { render(t); }; window.DURATION = DUR; window.playHero = play; window.stopHero = function () { if (raf) cancelAnimationFrame(raf); raf = 0; playing = false; };
+  function relayout() { var t = lastT; layout(); render(playing ? t : DUR); measureRows(); }
+  var ready = false;
+  function start() { if (ready) return; ready = true; layout(); measureRows(); updateRows(); updateAbout(); updateCards(); play(); }
+  window.addEventListener('resize', function () { if (ready) relayout(); });
+  var pend = false;
+  window.addEventListener('scroll', function () { if (pend) return; pend = true; requestAnimationFrame(function () { pend = false; updateRows(); updateAbout(); updateCards(); }); }, { passive: true });
+  var fl = (document.fonts && document.fonts.load) ? document.fonts.load('100px "Archivo Black"') : Promise.resolve();
+  Promise.race([fl, new Promise(function (r) { setTimeout(r, 1800); })]).then(function () { if (document.fonts && document.fonts.ready) return Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 600); })]); }).then(start, start);
+  window.addEventListener('load', function () { if (ready) { relayout(); } });
+})();
+</script>
+
+</body>
+</html>
