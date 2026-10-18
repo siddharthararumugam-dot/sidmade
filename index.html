@@ -6,42 +6,51 @@
 <title>Siddharthar | Creative Designer and Editor</title>
 <meta name="description" content="Siddharthar, a creative designer and visual editor. Graphic design, video editing and photo editing under SidMade.">
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#F5F3EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C0C0C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23C91C1E%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2740%27 font-family=%27Arial Black,Arial,sans-serif%27 font-weight=%27900%27 text-anchor=%27middle%27 fill=%27white%27%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* Theme tokens. Light is the default; dark follows the system unless the visitor picks one. */
-:root{--bg:#F5F3EE;--ink:#171717;--muted:#77746E;--line:#D9D6CF;--card:#FFFFFF;--card-edge:#171717;--grad:linear-gradient(180deg,#171717,#3d3d3d);--r:6px;--red:#C91C1E;--red-hover:#A91619;
- --svc-bg:#0C0C0C;--svc-ink:#F2F2F2;--svc-muted:#9A9A9A;--svc-line:#2E2E2E;
+:root{--bg:#F5F3EE;--ink:#171717;--muted:#5E5B55;--line:#D9D6CF;--card:#FFFFFF;--card-edge:#171717;--grad:linear-gradient(180deg,#171717,#3d3d3d);--r:6px;--red:#C91C1E;--red-text:#C91C1E;--red-hover:#A91619;
+ --svc-bg:#0C0C0C;--svc-ink:#F2F2F2;--svc-muted:#A8A8A8;--svc-line:#2E2E2E;
  --head:"Archivo Black","Arial Black",Impact,sans-serif;--sans:Kanit,system-ui,-apple-system,"Segoe UI",sans-serif;
  --pad:max(20px,env(safe-area-inset-left,0px));--padr:max(20px,env(safe-area-inset-right,0px));color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C0C0C;--ink:#E4EAEE;--muted:#8A949C;--line:#2A2D30;--card:#101112;--card-edge:#D7E2EA;--grad:linear-gradient(180deg,#646973,#BBCCD7);
- --svc-bg:#FFFFFF;--svc-ink:#111111;--svc-muted:#6B6B6B;--svc-line:#E6E6E6;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0C0C0C;--ink:#E4EAEE;--muted:#8A949C;--line:#2A2D30;--card:#101112;--card-edge:#D7E2EA;--grad:linear-gradient(180deg,#646973,#BBCCD7);
- --svc-bg:#FFFFFF;--svc-ink:#111111;--svc-muted:#6B6B6B;--svc-line:#E6E6E6;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C0C0C;--ink:#E4EAEE;--muted:#9AA4AB;--line:#2A2D30;--card:#101112;--card-edge:#D7E2EA;--grad:linear-gradient(180deg,#8D95A3,#CBD7E0);--red-text:#EF4547;
+ --svc-bg:#FFFFFF;--svc-ink:#111111;--svc-muted:#555555;--svc-line:#E6E6E6;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C0C0C;--ink:#E4EAEE;--muted:#9AA4AB;--line:#2A2D30;--card:#101112;--card-edge:#D7E2EA;--grad:linear-gradient(180deg,#8D95A3,#CBD7E0);--red-text:#EF4547;
+ --svc-bg:#FFFFFF;--svc-ink:#111111;--svc-muted:#555555;--svc-line:#E6E6E6;color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:72px;background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.panel :focus-visible{outline-color:var(--svc-ink)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:var(--r);text-decoration:none;font-size:14px}
+.skip:focus{top:12px}
 .wrap{max-width:1200px;margin:0 auto;padding-left:var(--pad);padding-right:var(--padr)}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;border-radius:var(--r);font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;font-family:inherit;transition:background .2s,color .2s,border-color .2s}
 .btn-red{background:var(--red);color:#fff;border:1px solid var(--red)}
 .btn-red:hover{background:var(--red-hover);border-color:var(--red-hover)}
 .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
 .btn-ghost:hover{background:var(--ink);color:var(--bg)}
+button.btn{appearance:none}
 header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-.brand{font-family:var(--head);font-size:16px;text-decoration:none}
-.sid{color:var(--ink)}.made{color:var(--red)}
+.brand{font-family:var(--head);font-size:16px;text-decoration:none;padding:10px 0;display:inline-block}
+.sid{color:var(--ink)}.made{color:var(--red-text)}
 .links{display:flex;align-items:center;gap:26px}
-.links a:not(.btn){text-decoration:none;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .2s}
-.links a:not(.btn):hover{color:var(--ink)}
-.links .btn{min-height:38px;padding:0 20px;font-size:12px}
-.theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:var(--r);height:38px;padding:0 14px;font:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s}
+.links a:not(.btn){text-decoration:none;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .2s;padding:6px 0;border-bottom:2px solid transparent}
+.links a:not(.btn):hover,.links a.active{color:var(--ink)}
+.links a.active{border-bottom-color:var(--red)}
+.links .btn{min-height:40px;padding:0 20px;font-size:12px}
+.theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:var(--r);height:40px;padding:0 14px;font:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s}
 .theme:hover{border-color:var(--ink)}
-.menu{display:none;background:none;border:1px solid var(--line);border-radius:var(--r);height:40px;padding:0 16px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}
+.menu{display:none;background:none;border:1px solid var(--line);border-radius:var(--r);height:44px;padding:0 16px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer}
 .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:88px}
 .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
 h1{font-family:var(--head);font-weight:400;font-size:clamp(40px,6.4vw,88px);line-height:1.02;color:var(--ink)}
@@ -50,64 +59,81 @@ h1{font-family:var(--head);font-weight:400;font-size:clamp(40px,6.4vw,88px);line
 .brandline b{font-weight:600}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;filter:grayscale(1);border-radius:var(--r)}
+/* Every section heading shares one style, centred, with a one-line subtitle. */
 section{padding-top:96px}
-h2{font-family:var(--head);font-weight:400;font-size:clamp(36px,7vw,96px);line-height:1.05;text-align:center;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.1em}
-.sub{text-align:center;color:var(--muted);font-size:15px;margin-top:8px}
+h2{font-family:var(--head);font-weight:400;font-size:clamp(32px,6vw,72px);line-height:1.08;text-align:center;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-bottom:.1em}
+.sub{text-align:center;color:var(--muted);font-size:16px;margin:10px auto 0;max-width:560px}
 .marquee{padding:24px 0 8px;overflow:hidden;border-top:1px solid var(--line)}
 .mrow{display:flex;gap:16px;width:max-content;will-change:transform}
 .mrow+.mrow{margin-top:16px}
-.tile{flex:none;height:clamp(200px,26vw,320px);padding:0;border:0;background:none;cursor:zoom-in;border-radius:var(--r);overflow:hidden}
-.tile img{height:100%;width:auto;max-width:none}
+.tile{flex:none;height:clamp(200px,26vw,320px);aspect-ratio:4/5;padding:0;border:0;background:none;cursor:zoom-in;border-radius:var(--r);overflow:hidden}
+.tile img{height:100%;width:100%;object-fit:cover}
 .stack{margin-top:56px}
 .slot{position:sticky;top:calc(84px + var(--i)*26px);padding-bottom:28px}
 .card{background:var(--card);border:1px solid var(--card-edge);border-radius:var(--r);padding:36px}
 .card-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
 .lhs{display:flex;align-items:center;gap:20px}
 .num{font-family:var(--head);font-size:48px;line-height:1;color:var(--ink)}
-.lhs small{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.lhs small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .lhs h3{font-family:var(--head);font-weight:400;font-size:28px;line-height:1.1}
-.shots{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:16px}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .shot{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;overflow:hidden;border-radius:var(--r)}
+.shot:not(.more){box-shadow:0 0 0 1px var(--line)}
 .shot img{width:100%;transition:opacity .2s}.shot:hover img{opacity:.88}
-.more{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;aspect-ratio:4/5;border:1px solid var(--line);text-decoration:none;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.more{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;aspect-ratio:4/5;border:1px solid var(--line);text-decoration:none;text-align:center;cursor:pointer;transition:border-color .2s}
 .more:hover{border-color:var(--ink)}
 .more span,.more em{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-style:normal}
 .more strong{font-family:var(--head);font-weight:400;font-size:clamp(22px,3vw,34px);color:var(--ink)}
 .note{margin-top:8px;text-align:center;color:var(--muted);font-size:14px}
 /* Services always contrasts with the page: white panel on dark theme, black panel on light theme. */
-.panel{background:var(--svc-bg);color:var(--svc-ink);border-radius:var(--r);margin-top:96px;padding-top:88px;padding-bottom:88px}
-.panel h2{background:none;-webkit-text-fill-color:var(--svc-ink);color:var(--svc-ink);text-align:left}
-.panel .sub{text-align:left;color:var(--svc-muted)}
+.panel{background:var(--svc-bg);color:var(--svc-ink);border-radius:var(--r);margin-top:72px;padding-top:88px;padding-bottom:88px}
+.panel h2{background:none;-webkit-text-fill-color:var(--svc-ink);color:var(--svc-ink)}
+.panel .sub{color:var(--svc-muted)}
 .services{display:grid;grid-template-columns:repeat(3,1fr);margin-top:48px;border-top:1px solid var(--svc-line)}
 .svc{padding:32px 32px 32px 0;border-bottom:1px solid var(--svc-line)}
 .svc+.svc{padding-left:32px;border-left:1px solid var(--svc-line)}
 .svc h3{font-family:var(--head);font-weight:400;font-size:26px;margin-bottom:16px}
 .svc li{list-style:none;padding:9px 0;border-top:1px solid var(--svc-line);color:var(--svc-muted);font-size:15.5px}
 .svc li:first-child{border-top:0;padding-top:0}
-.svc-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:36px}
+.svc-cta{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:40px;text-align:center}
 .svc-cta p{font-size:18px}
-.contact h2{text-align:left;max-width:10em;font-size:clamp(34px,6vw,80px)}
-.contact .lead{margin-top:20px;max-width:520px;font-size:19px}
-.ways{margin-top:44px;border-top:1px solid var(--line)}
-.way{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .2s}
-.way:hover{padding-left:8px}
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+.way{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:32px 20px;border:1px solid var(--card-edge);border-radius:var(--r);background:var(--card);text-decoration:none;text-align:center;min-height:132px;transition:border-color .2s,background .2s}
+.way:hover{border-color:var(--red)}
 .way span:first-child{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.way span:last-child{font-family:var(--head);font-size:clamp(18px,2.6vw,30px);overflow-wrap:anywhere;text-align:right}
+.way span:last-child{font-family:var(--head);font-size:clamp(17px,2.4vw,26px);overflow-wrap:anywhere}
+.copyrow{margin-top:14px;text-align:center}
+.linkbtn{background:none;border:0;color:var(--muted);font:inherit;font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:10px 12px;min-height:44px}
+.linkbtn:hover{color:var(--ink)}
 footer{margin-top:96px;border-top:1px solid var(--line);padding-top:28px;padding-bottom:36px}
 .foot{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
 .foot nav{display:flex;flex-wrap:wrap;gap:8px 24px}
-.foot a{text-decoration:none}.foot a:hover{color:var(--ink)}
+.foot a{text-decoration:none;padding:12px 0;display:inline-block}.foot a:hover{color:var(--ink)}
 .foot strong{color:var(--ink);font-weight:600}
-.lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:24px}
-.lb[hidden]{display:none}
-.lb img{max-height:88vh;max-width:min(92vw,900px);width:auto;border-radius:var(--r)}
-.lb button{position:absolute;top:16px;right:16px;background:#fff;color:#111;border:0;border-radius:var(--r);height:40px;padding:0 18px;font:inherit;font-size:14px;cursor:pointer}
+/* Poster viewer and the contact chooser */
+.lb,.sheet{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:24px}
+.lb{background:rgba(0,0,0,.94);flex-direction:column;gap:14px}
+.lb[hidden],.sheet[hidden]{display:none}
+.lb img{max-height:78vh;max-width:min(88vw,720px);width:auto;border-radius:var(--r);touch-action:pan-y}
+.lb .cap{color:#e8e8e8;font-size:14px;text-align:center;max-width:min(88vw,720px)}
+.lb button{position:absolute;background:#fff;color:#111;border:0;border-radius:var(--r);min-width:48px;height:48px;padding:0 16px;font:inherit;font-size:15px;cursor:pointer}
+.lb button:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #000}
+.lb #lbx{top:16px;right:16px}
+.lb #lbp,.lb #lbn{top:50%;transform:translateY(-50%);font-size:22px}
+.lb #lbp{left:12px}.lb #lbn{right:12px}
+.sheet{background:rgba(0,0,0,.6)}
+.sheet .box{background:var(--card);color:var(--ink);border:1px solid var(--card-edge);border-radius:var(--r);padding:28px;width:min(440px,100%);position:relative}
+.sheet h3{font-family:var(--head);font-weight:400;font-size:26px;line-height:1.15}
+.sheet p{margin:8px 0 20px;color:var(--muted)}
+.sheet .opts{display:grid;gap:12px}
+.sheet .opts .btn{min-height:54px;font-size:14px}
+.sheet .row{display:flex;justify-content:space-between;gap:8px;margin-top:10px}
 @media(max-width:900px){
  .hero{gap:32px;padding-top:48px;padding-bottom:56px}
  .services{grid-template-columns:1fr}
  .svc,.svc+.svc{padding:28px 0;border-left:0}
  section{padding-top:64px}
- .panel{border-radius:var(--r);padding-top:64px;padding-bottom:64px}
+ .panel{padding-top:64px;padding-bottom:64px;margin-top:64px}
  .card{padding:22px}
 }
 @media(max-width:720px){
@@ -115,16 +141,17 @@ footer{margin-top:96px;border-top:1px solid var(--line);padding-top:28px;padding
  .links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;padding:8px var(--padr) 20px var(--pad)}
  .links.open{display:flex}
  .links a:not(.btn){padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
- .links .btn,.links .theme{margin-top:14px;min-height:46px}
+ .links a.active{border-bottom-color:var(--red)}
+ .links .btn,.links .theme{margin-top:14px;min-height:48px}
  .shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -2px;padding:0 2px 6px;-webkit-overflow-scrolling:touch}
  .shot{flex:0 0 72%;scroll-snap-align:start}
  .more{aspect-ratio:4/5}
  .slot{position:static}
-}
-@media(max-width:720px){
+ .ways{grid-template-columns:1fr}
+ .way{min-height:104px;padding:24px 16px}
  .hero{grid-template-columns:1fr;row-gap:0;padding-top:36px;padding-bottom:48px}
  .hero-text{display:contents}
- .eyebrow{order:1;font-size:11px;letter-spacing:.12em;margin-bottom:14px}
+ .eyebrow{order:1;font-size:12px;letter-spacing:.12em;margin-bottom:14px}
  h1{order:2;font-size:clamp(34px,10.5vw,52px);line-height:1.05}
  .hero .photo{order:3;margin:24px 0 8px}
  .photo img{aspect-ratio:4/3;object-position:50% 22%}
@@ -132,20 +159,24 @@ footer{margin-top:96px;border-top:1px solid var(--line);padding-top:28px;padding
  .brandline{order:5;font-size:15px}
  .cta{order:6;margin-top:28px}
  .cta .btn{flex:1 1 auto}
+ .lb #lbp,.lb #lbn{top:auto;bottom:20px;transform:none}
+ .lb #lbp{left:16px}.lb #lbn{right:16px}
+ .lb img{max-height:70vh}
 }
-@media(max-width:480px){.way{flex-direction:column;align-items:flex-start;gap:4px}.way span:last-child{text-align:left}.num{font-size:40px}.lhs h3{font-size:26px}}
+@media(max-width:480px){.num{font-size:40px}.lhs h3{font-size:26px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.mrow{transform:none!important}}
 </style>
 
 </head>
 <body>
+<a class="skip" href="#top">Skip to content</a>
 <header><div class="wrap nav">
-  <a class="brand" href="#top"><span class="sid">Sid</span><span class="made">Made</span></a>
+  <a class="brand" href="#top" aria-label="SidMade, back to top"><span class="sid">Sid</span><span class="made">Made</span></a>
   <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="links">Menu</button>
   <nav class="links" id="links" aria-label="Main">
     <a href="#services">Services</a><a href="#work">Work</a><a href="#contact">Contact</a>
     <button class="theme" id="theme" type="button" aria-pressed="false">Dark mode</button>
-    <a class="btn btn-red" href="#contact">Start a Project</a>
+    <a class="btn btn-red" href="#contact" data-start>Start a Project</a>
   </nav>
 </div></header>
 <main id="top">
@@ -155,67 +186,68 @@ footer{margin-top:96px;border-top:1px solid var(--line);padding-top:28px;padding
     <h1>Hey, I’m Siddharthar.</h1>
     <p class="intro">I’m a creative designer and visual editor who enjoys turning ideas into visuals that make an impression. I work across graphic design, video editing, and photo editing.</p>
     <p class="brandline">Currently creating under <b><span class="sid">Sid</span><span class="made">Made</span></b> — my independent creative brand for design and visual storytelling.</p>
-    <div class="cta"><a class="btn btn-red" href="#work">Explore My Work</a><a class="btn btn-ghost" href="#contact">Let’s Work Together</a></div>
+    <div class="cta"><a class="btn btn-red" href="#work">Explore My Work</a><a class="btn btn-ghost" href="#contact" data-start>Let’s Work Together</a></div>
   </div>
-  <div class="photo"><img src="images/photo.jpg" alt="Portrait of Siddharthar" width="900" height="1200" fetchpriority="high"></div>
+  <div class="photo"><img src="images/photo.jpg" alt="Portrait of Siddharthar" width="900" height="1200" fetchpriority="high" decoding="async"></div>
 </div>
 
-<div class="marquee" aria-label="Poster showcase">
+<div class="marquee" aria-hidden="true">
   <div class="mrow" id="mrow1">
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/greatest-bw.jpg" alt="The Greatest Of All Time poster in black and white"></button>
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/since-1975.jpg" alt="Since 1975 poster"></button>
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/mcgill-wexler.jpg" alt="McGill and Wexler poster"></button>
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/reintroducing.jpg" alt="ReIntroducing The Real Goat poster"></button>
+    <button class="tile" type="button" data-poster="greatest-bw" aria-label="View poster larger: The Greatest Of All Time poster in black and white"><img loading="lazy" decoding="async" src="images/posters/sm/greatest-bw.jpg" width="640" height="800" alt="The Greatest Of All Time poster in black and white"></button>
+    <button class="tile" type="button" data-poster="since-1975" aria-label="View poster larger: Since 1975 poster in red and black with gold stars"><img loading="lazy" decoding="async" src="images/posters/sm/since-1975.jpg" width="640" height="800" alt="Since 1975 poster in red and black with gold stars"></button>
+    <button class="tile" type="button" data-poster="mcgill-wexler" aria-label="View poster larger: McGill and Wexler duotone poster"><img loading="lazy" decoding="async" src="images/posters/sm/mcgill-wexler.jpg" width="640" height="800" alt="McGill and Wexler duotone poster"></button>
+    <button class="tile" type="button" data-poster="reintroducing" aria-label="View poster larger: ReIntroducing The Real Goat yellow poster"><img loading="lazy" decoding="async" src="images/posters/sm/reintroducing.jpg" width="640" height="800" alt="ReIntroducing The Real Goat yellow poster"></button>
   </div>
   <div class="mrow" id="mrow2">
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/santhosh.jpg" alt="Tamil music collage poster"></button>
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/greatest-red.jpg" alt="The Greatest Of All Time poster in red"></button>
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/eyes-chico.jpg" alt="The Eyes Chico poster"></button>
-    <button class="tile" type="button" data-zoom><img loading="lazy" src="images/posters/greatest-yellow.jpg" alt="The Greatest Of All Time poster in yellow"></button>
+    <button class="tile" type="button" data-poster="santhosh" aria-label="View poster larger: Tamil music collage poster in black and white"><img loading="lazy" decoding="async" src="images/posters/sm/santhosh.jpg" width="640" height="800" alt="Tamil music collage poster in black and white"></button>
+    <button class="tile" type="button" data-poster="greatest-red" aria-label="View poster larger: The Greatest Of All Time poster in red"><img loading="lazy" decoding="async" src="images/posters/sm/greatest-red.jpg" width="640" height="800" alt="The Greatest Of All Time poster in red"></button>
+    <button class="tile" type="button" data-poster="eyes-chico" aria-label="View poster larger: The Eyes Chico, They Never Lie poster"><img loading="lazy" decoding="async" src="images/posters/sm/eyes-chico.jpg" width="640" height="800" alt="The Eyes Chico, They Never Lie poster"></button>
+    <button class="tile" type="button" data-poster="greatest-yellow" aria-label="View poster larger: The Greatest Of All Time poster in yellow"><img loading="lazy" decoding="async" src="images/posters/sm/greatest-yellow.jpg" width="640" height="800" alt="The Greatest Of All Time poster in yellow"></button>
   </div>
 </div>
 
-<section class="panel" id="services"><div class="wrap">
-  <h2>Services</h2>
+<section class="panel" id="services" aria-labelledby="h-services"><div class="wrap">
+  <h2 id="h-services">Services</h2>
   <p class="sub">What you can hire me for</p>
   <div class="services">
     <div class="svc"><h3>Graphic Design</h3><ul><li>Promotional posters and creatives</li><li>Social media designs</li><li>Campaign and event graphics</li></ul></div>
     <div class="svc"><h3>Video Editing</h3><ul><li>Reels and short-form videos</li><li>Promotional videos</li><li>Cuts and pacing</li><li>Subtitles, transitions and colour correction</li></ul></div>
     <div class="svc"><h3>Photo Editing</h3><ul><li>Photo retouching</li><li>Colour grading</li><li>Visual enhancement and finishing</li></ul></div>
   </div>
-  <div class="svc-cta"><p>Have something in mind? Let’s talk it through.</p><a class="btn btn-red" href="#contact">Discuss Your Project</a></div>
+  <div class="svc-cta"><p>Have something in mind? Let’s talk it through.</p><a class="btn btn-red" href="#contact" data-start>Discuss Your Project</a></div>
 </div></section>
 
-<section class="wrap" id="work">
-  <h2>Selected Work</h2>
-  <p class="sub">Graphic design · tap any poster to view it larger</p>
+<section class="wrap" id="work" aria-labelledby="h-work">
+  <h2 id="h-work">Selected Work</h2>
+  <p class="sub">Graphic design. Tap any poster to view it larger.</p>
   <div class="stack">
-    <div class="slot" style="--i:0"><article class="card"><div class="card-top"><div class="lhs"><div class="num">01</div><div><small>Graphic Design · Poster series</small><h3>The Greatest</h3></div></div><a class="btn btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram</a></div><div class="shots" style="--n:3">
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/greatest-bw.jpg" alt="The Greatest Of All Time poster in black and white"></button>
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/greatest-red.jpg" alt="The Greatest Of All Time poster in red"></button>
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/greatest-yellow.jpg" alt="The Greatest Of All Time poster in yellow"></button>
+    <div class="slot" style="--i:0"><article class="card"><div class="card-top"><div class="lhs"><div class="num">01</div><div><small>Graphic Design · Poster series</small><h3>The Greatest</h3></div></div><a class="btn btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram<span class="vh"> (opens in a new tab)</span></a></div><div class="shots">
+      <button class="shot" type="button" data-poster="greatest-bw" aria-label="View poster larger: The Greatest Of All Time poster in black and white"><img loading="lazy" decoding="async" src="images/posters/sm/greatest-bw.jpg" width="640" height="800" alt="The Greatest Of All Time poster in black and white"></button>
+      <button class="shot" type="button" data-poster="greatest-red" aria-label="View poster larger: The Greatest Of All Time poster in red"><img loading="lazy" decoding="async" src="images/posters/sm/greatest-red.jpg" width="640" height="800" alt="The Greatest Of All Time poster in red"></button>
+      <button class="shot" type="button" data-poster="greatest-yellow" aria-label="View poster larger: The Greatest Of All Time poster in yellow"><img loading="lazy" decoding="async" src="images/posters/sm/greatest-yellow.jpg" width="640" height="800" alt="The Greatest Of All Time poster in yellow"></button>
     </div></article></div>
-    <div class="slot" style="--i:1"><article class="card"><div class="card-top"><div class="lhs"><div class="num">02</div><div><small>Graphic Design · Tribute posters</small><h3>Cinema Icons</h3></div></div><a class="btn btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram</a></div><div class="shots" style="--n:3">
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/since-1975.jpg" alt="Since 1975 poster in red and black with gold stars"></button>
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/reintroducing.jpg" alt="ReIntroducing The Real Goat yellow poster"></button>
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/eyes-chico.jpg" alt="The Eyes Chico, They Never Lie poster"></button>
+    <div class="slot" style="--i:1"><article class="card"><div class="card-top"><div class="lhs"><div class="num">02</div><div><small>Graphic Design · Tribute posters</small><h3>Cinema Icons</h3></div></div><a class="btn btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram<span class="vh"> (opens in a new tab)</span></a></div><div class="shots">
+      <button class="shot" type="button" data-poster="since-1975" aria-label="View poster larger: Since 1975 poster in red and black with gold stars"><img loading="lazy" decoding="async" src="images/posters/sm/since-1975.jpg" width="640" height="800" alt="Since 1975 poster in red and black with gold stars"></button>
+      <button class="shot" type="button" data-poster="reintroducing" aria-label="View poster larger: ReIntroducing The Real Goat yellow poster"><img loading="lazy" decoding="async" src="images/posters/sm/reintroducing.jpg" width="640" height="800" alt="ReIntroducing The Real Goat yellow poster"></button>
+      <button class="shot" type="button" data-poster="eyes-chico" aria-label="View poster larger: The Eyes Chico, They Never Lie poster"><img loading="lazy" decoding="async" src="images/posters/sm/eyes-chico.jpg" width="640" height="800" alt="The Eyes Chico, They Never Lie poster"></button>
     </div></article></div>
-    <div class="slot" style="--i:2"><article class="card"><div class="card-top"><div class="lhs"><div class="num">03</div><div><small>Graphic Design · Experiments</small><h3>Colour and Collage</h3></div></div><a class="btn btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram</a></div><div class="shots" style="--n:3">
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/mcgill-wexler.jpg" alt="McGill and Wexler duotone poster"></button>
-      <button class="shot" type="button" data-zoom><img loading="lazy" src="images/posters/santhosh.jpg" alt="Tamil music collage poster in black and white"></button>
+    <div class="slot" style="--i:2"><article class="card"><div class="card-top"><div class="lhs"><div class="num">03</div><div><small>Graphic Design · Experiments</small><h3>Colour and Collage</h3></div></div><a class="btn btn-ghost" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener">View on Instagram<span class="vh"> (opens in a new tab)</span></a></div><div class="shots">
+      <button class="shot" type="button" data-poster="mcgill-wexler" aria-label="View poster larger: McGill and Wexler duotone poster"><img loading="lazy" decoding="async" src="images/posters/sm/mcgill-wexler.jpg" width="640" height="800" alt="McGill and Wexler duotone poster"></button>
+      <button class="shot" type="button" data-poster="santhosh" aria-label="View poster larger: Tamil music collage poster in black and white"><img loading="lazy" decoding="async" src="images/posters/sm/santhosh.jpg" width="640" height="800" alt="Tamil music collage poster in black and white"></button>
       <a class="shot more" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener"><span>More work on</span><strong>Instagram</strong><em>@sidmade.in</em></a>
     </div></article></div>
   </div>
   <p class="note">All posters shown are personal, fan-made concept designs.</p>
 </section>
 
-<section class="wrap contact" id="contact">
-  <h2>Have a project in mind?</h2>
-  <p class="lead">Tell me what you’re working on, and let’s create something great together.</p>
+<section class="wrap contact" id="contact" aria-labelledby="h-contact">
+  <h2 id="h-contact">Have a project in mind?</h2>
+  <p class="sub">Tell me what you’re working on, and let’s create something great together.</p>
   <div class="ways">
-    <a class="way" href="https://www.instagram.com/sidmade.in/" target="_blank" rel="noopener"><span>Instagram</span><span>@sidmade.in</span></a>
-    <a class="way" href="mailto:siddharthararumugam@gmail.com"><span>Email</span><span>siddharthararumugam@gmail.com</span></a>
+    <a class="way" href="https://ig.me/m/sidmade.in" target="_blank" rel="noopener"><span>Message on Instagram</span><span>@sidmade.in</span></a>
+    <a class="way" href="mailto:siddharthararumugam@gmail.com?subject=Project%20enquiry&body=Hi%20Siddharthar%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AWhat%20I%20need%3A%20%0ADeadline%3A%20"><span>Send an email</span><span>siddharthararumugam@gmail.com</span></a>
   </div>
+  <p class="copyrow"><button class="linkbtn" type="button" data-copy>Copy email address</button></p>
 </section>
 </main>
 
@@ -225,34 +257,82 @@ footer{margin-top:96px;border-top:1px solid var(--line);padding-top:28px;padding
   <div>© 2026 SidMade. All rights reserved.</div>
 </div></footer>
 
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Poster viewer" hidden><button type="button" id="lbx">Close</button><img id="lbi" alt=""></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Poster viewer" hidden>
+  <button type="button" id="lbx" aria-label="Close viewer">Close</button>
+  <button type="button" id="lbp" aria-label="Previous poster">&#8592;</button>
+  <img id="lbi" alt="">
+  <p class="cap" id="lbc" aria-live="polite"></p>
+  <button type="button" id="lbn" aria-label="Next poster">&#8594;</button>
+</div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-t" hidden>
+  <div class="box">
+    <h3 id="sheet-t">Start a project</h3>
+    <p>Choose how you’d like to reach me.</p>
+    <div class="opts">
+      <a class="btn btn-red" href="https://ig.me/m/sidmade.in" target="_blank" rel="noopener">Message on Instagram</a>
+      <a class="btn btn-ghost" href="mailto:siddharthararumugam@gmail.com?subject=Project%20enquiry&body=Hi%20Siddharthar%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AWhat%20I%20need%3A%20%0ADeadline%3A%20">Send an email</a>
+    </div>
+    <div class="row"><button class="linkbtn" type="button" data-copy>Copy email address</button><button class="linkbtn" type="button" id="sheetx">Close</button></div>
+  </div>
+</div>
 <script>
 (function(){
-
-var tb=document.getElementById('theme'),root=document.documentElement,mqd=matchMedia('(prefers-color-scheme: dark)');
+var root=document.documentElement,EMAIL="siddharthararumugam@gmail.com";
+function $(s,r){return (r||document).querySelector(s)}function $$(s,r){return [].slice.call((r||document).querySelectorAll(s))}
+/* theme */
+var tb=$('#theme'),mqd=matchMedia('(prefers-color-scheme: dark)');
 function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':mqd.matches}
 function paint(){var d=isDark();tb.textContent=d?'Light mode':'Dark mode';tb.setAttribute('aria-pressed',d)}
 try{var sv=localStorage.getItem('sidmade-theme');if(sv==='dark'||sv==='light')root.setAttribute('data-theme',sv)}catch(e){}
 tb.addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('sidmade-theme',n)}catch(e){}paint()});
-mqd.addEventListener&&mqd.addEventListener('change',paint);paint();
-var m=document.getElementById('menu'),l=document.getElementById('links');
-function cl(){l.classList.remove('open');m.setAttribute('aria-expanded','false')}
+if(mqd.addEventListener)mqd.addEventListener('change',paint);paint();
+/* mobile menu */
+var m=$('#menu'),l=$('#links');
+function closeMenu(){l.classList.remove('open');m.setAttribute('aria-expanded','false')}
 m.addEventListener('click',function(){var o=l.classList.toggle('open');m.setAttribute('aria-expanded',o)});
-l.addEventListener('click',function(e){if(e.target.tagName==='A')cl()});
-var lb=document.getElementById('lb'),li=document.getElementById('lbi'),x=document.getElementById('lbx');
-function close(){lb.hidden=true;li.removeAttribute('src')}
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-zoom],.tile');if(!b)return;var i=b.querySelector('img');li.src=i.currentSrc||i.src;li.alt=b.hasAttribute('aria-hidden')?'':i.alt;lb.hidden=false;x.focus()});
-x.addEventListener('click',close);lb.addEventListener('click',function(e){if(e.target===lb)close()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close()});
-
-var mq=document.querySelector('.marquee'),rows=[document.getElementById('mrow1'),document.getElementById('mrow2')],rm=matchMedia('(prefers-reduced-motion: reduce)').matches,setW=0;
-rows.forEach(function(r){var k=[].slice.call(r.children);[1,2].forEach(function(){k.forEach(function(c){var n=c.cloneNode(true);n.setAttribute('aria-hidden','true');n.tabIndex=-1;r.appendChild(n)})})});
+l.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('a'))closeMenu()});
+/* marquee clones (decorative) */
+var mq=$('.marquee'),rows=[$('#mrow1'),$('#mrow2')],rm=matchMedia('(prefers-reduced-motion: reduce)').matches,setW=0;
+rows.forEach(function(r){var k=[].slice.call(r.children);[1,2].forEach(function(){k.forEach(function(c){var n=c.cloneNode(true);r.appendChild(n)})})});
+$$('.tile').forEach(function(t){t.tabIndex=-1});
 function meas(){setW=rows[0].scrollWidth/3+16/3;rows.forEach(function(r){r.style.marginLeft=(-setW)+'px'})}
 function mv(){if(rm)return;var t=mq.getBoundingClientRect().top+window.scrollY,o=(window.scrollY-t+innerHeight)*0.3;rows[0].style.transform='translateX('+(o-200).toFixed(1)+'px)';rows[1].style.transform='translateX('+(-(o-200)).toFixed(1)+'px)'}
-var pend=false;window.addEventListener('scroll',function(){if(pend)return;pend=true;requestAnimationFrame(function(){pend=false;mv()})},{passive:true});
-window.addEventListener('resize',function(){meas();mv()});window.addEventListener('load',function(){meas();mv()});meas();mv();
+var pend=false;addEventListener('scroll',function(){if(pend)return;pend=true;requestAnimationFrame(function(){pend=false;mv()})},{passive:true});
+addEventListener('resize',function(){meas();mv()});addEventListener('load',function(){meas();mv()});meas();mv();
+/* focus handling for dialogs */
+var lastFocus=null;
+function trap(box,e){if(e.key!=='Tab')return;var f=$$('a[href],button',box).filter(function(x){return x.offsetParent!==null||x===document.activeElement});if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}
+/* poster viewer: arrows, keyboard and swipe */
+var lb=$('#lb'),li=$('#lbi'),lc=$('#lbc'),ids=[],alts={},cur=0;
+$$('.shots [data-poster]').forEach(function(b){var id=b.getAttribute('data-poster');if(ids.indexOf(id)<0){ids.push(id);alts[id]=$('img',b).alt}});
+function full(id){return (window.__FULL&&window.__FULL[id])||('images/posters/'+id+'.jpg')}
+function show(i){cur=(i+ids.length)%ids.length;var id=ids[cur];li.src=full(id);li.alt=alts[id];lc.textContent=(cur+1)+' of '+ids.length+'. '+alts[id];var n=new Image();n.src=full(ids[(cur+1)%ids.length])}
+function openLb(id,from){lastFocus=from;show(Math.max(0,ids.indexOf(id)));lb.hidden=false;document.body.style.overflow='hidden';$('#lbx').focus()}
+function closeLb(){lb.hidden=true;li.removeAttribute('src');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-poster]');if(b){openLb(b.getAttribute('data-poster'),b)}});
+$('#lbx').addEventListener('click',closeLb);$('#lbp').addEventListener('click',function(){show(cur-1)});$('#lbn').addEventListener('click',function(){show(cur+1)});
+lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+var sx=null;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+lb.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>50)show(cur+(dx<0?1:-1))},{passive:true});
+lb.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();show(cur+1)}else if(e.key==='ArrowLeft'){e.preventDefault();show(cur-1)}else trap(lb,e)});
+/* start a project chooser */
+var sh=$('#sheet');
+function openSheet(from){lastFocus=from;sh.hidden=false;$('a',sh).focus()}
+function closeSheet(){sh.hidden=true;if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+$$('[data-start]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();closeMenu();openSheet(a)})});
+$('#sheetx').addEventListener('click',closeSheet);sh.addEventListener('click',function(e){if(e.target===sh)closeSheet()});
+sh.addEventListener('keydown',function(e){trap(sh,e)});
+$$('.sheet a').forEach(function(a){a.addEventListener('click',function(){setTimeout(closeSheet,150)})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(!lb.hidden)closeLb();else if(!sh.hidden)closeSheet()}});
+/* copy email */
+$$('[data-copy]').forEach(function(b){var t=b.textContent;b.addEventListener('click',function(){
+ function done(){b.textContent='Copied';setTimeout(function(){b.textContent=t},1800)}
+ function fb(){var x=document.createElement('textarea');x.value=EMAIL;x.setAttribute('readonly','');x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();try{document.execCommand('copy')?done():(b.textContent=EMAIL)}catch(e){b.textContent=EMAIL}document.body.removeChild(x)}
+ try{navigator.clipboard.writeText(EMAIL).then(done,fb)}catch(e){fb()}})});
+/* highlight the current section in the nav */
+if('IntersectionObserver' in window){var links=$$('.links a[href^="#"]:not(.btn)');var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-40% 0px -55% 0px'});['services','work','contact'].forEach(function(id){so.observe(document.getElementById(id))})}
 })();
 </script>
-
 </body>
 </html>
